@@ -1,0 +1,45 @@
+<h1 id="counter"></h1>
+<hr>
+<img id='game_image' alt='No Image'>
+<hr>
+<button onclick="addImage()">Add</button>
+<hr>
+<table border="1" id="play">
+  <tr>
+    <th>Image</th>
+  </tr>
+
+  <% @plays.each do |obj| %>
+    <tr>
+      <td><%= obj.timer %></td>
+      <td><%= image_tag obj.image.link.variant(resize: "100x100") if obj.image %> </td>
+    </tr>
+  <% end %>
+</table>
+
+
+<script type="text/javascript">
+  let counter = 10
+  var images_arr = []
+  let image_count = 0
+
+  '<% @images.each do |obj| %>'
+    images_arr.push({id: '<%= obj.id %>', link: '<%= obj.image_link %>'})
+  '<% end %>'
+
+  setInterval(function() {
+    document.getElementById('counter').innerHTML = counter
+    counter -= 1
+    if (counter == 0) { counter = 10 }
+
+    if (images_arr.length > 0){
+      var el = document.getElementById('game_image')
+      el.src = images_arr[image_count]['link']
+      el.dataset.id = images_arr[image_count]['id']
+      image_count += 1
+      if (image_count == images_arr.length){ image_count = 0 }
+    }
+
+  }, 1000);
+
+</script>

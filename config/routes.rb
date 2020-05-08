@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  root 'images#index'
   resources :images, only: [:index, :create, :destroy]
+  resources :plays,  only: [:index, :create]
+  root 'images#index'
 end
