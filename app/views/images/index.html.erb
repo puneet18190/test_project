@@ -1,0 +1,22 @@
+<h1>Add Images</h1>
+<%= form_for Image.new do |f| %>
+  <%= f.file_field :link, multiple: true  %>
+  <%= f.submit 'Add' %>
+<% end %>
+
+<hr>
+
+<table border="1">
+  <tr>
+    <th>Image</th>
+    <th>Action</th>
+  </tr>
+
+  <% @images.each do |obj| %>
+    <tr>
+      <td><%= image_tag obj.link.variant(resize: "100x100") %> </td>
+      <td><%= link_to 'Delete', image_path(obj), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+
+</table>
