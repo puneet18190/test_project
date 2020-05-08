@@ -1,4 +1,18 @@
 
+function start_game(){
+  document.getElementById('counter').innerHTML = counter
+  counter -= 1
+  if (counter == 0) { counter = 10 }
+
+  if (images_arr.length > 0){
+    var el = document.getElementById('game_image')
+    el.src = images_arr[image_count]['link']
+    el.dataset.id = images_arr[image_count]['id']
+    image_count += 1
+    if (image_count == images_arr.length){ image_count = 0 }
+  }
+}
+
 function addImage(){
   var xhttp = new XMLHttpRequest();
   var token = document.querySelector("meta[name=csrf-token]").content;

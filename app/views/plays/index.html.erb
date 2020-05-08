@@ -1,9 +1,12 @@
 <h1 id="counter"></h1>
 <hr>
-<img id='game_image' alt='No Image'>
+
+<img id='game_image' alt='No Image' />
 <hr>
+
 <button onclick="addImage()">Add</button>
 <hr>
+
 <table border="1" id="play">
   <tr>
     <th>Image</th>
@@ -20,7 +23,7 @@
 
 <script type="text/javascript">
   let counter = 10
-  var images_arr = []
+  let images_arr = []
   let image_count = 0
 
   '<% @images.each do |obj| %>'
@@ -28,18 +31,7 @@
   '<% end %>'
 
   setInterval(function() {
-    document.getElementById('counter').innerHTML = counter
-    counter -= 1
-    if (counter == 0) { counter = 10 }
-
-    if (images_arr.length > 0){
-      var el = document.getElementById('game_image')
-      el.src = images_arr[image_count]['link']
-      el.dataset.id = images_arr[image_count]['id']
-      image_count += 1
-      if (image_count == images_arr.length){ image_count = 0 }
-    }
-
+    start_game();
   }, 1000);
 
 </script>
